@@ -410,6 +410,7 @@ EOF
     git_repo             = "terragoat"
     yor_trace            = "f7999d4e-c983-43ee-bd88-7903a6f8483e"
   })
+  monitoring = true
 }
 
 output "db_app_public_dns" {
@@ -421,4 +422,3 @@ output "db_endpoint" {
   description = "DB Endpoint"
   value       = aws_db_instance.default.endpoint
 }
-
