@@ -49,6 +49,29 @@ resource "aws_ebs_volume" "web_host_storage" {
     yor_trace            = "c5509daf-10f0-46af-9e03-41989212521d"
   })
 }
+resource "aws_backup_vault" "USER_INPUT_1" {
+  name = "USER_INPUT_2"
+}
+
+resource "aws_backup_plan" "USER_INPUT_3" {
+  name = "USER_INPUT_4"
+
+  rule {
+    rule_name         = "USER_INPUT_5"
+    target_vault_name = aws_backup_vault.USER_INPUT_1.name
+    schedule          = "cron(0 12 * * ? *)"
+  }
+}
+
+resource "aws_backup_selection" "USER_INPUT_6" {
+  iam_role_arn = "USER_INPUT_7"
+  name         = "USER_INPUT_8"
+  plan_id      = aws_backup_plan.USER_INPUT_3.id
+
+  resources = [
+    aws_ebs_volume.web_host_storage.id,
+  ]
+}
 
 resource "aws_ebs_snapshot" "example_snapshot" {
   # ebs snapshot without encryption
